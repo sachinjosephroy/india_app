@@ -1,5 +1,39 @@
 <% if @user.errors.any? %>
   <div id="error_explanation">
+    <div class="alert alert-warning">
+      <% if @user.errors[:name].first.present? %>
+      <% error = @user.errors.full_messages_for(:name).first %>
+        <%= error %>
+      <% elsif @user.errors[:name].second.present? %>
+      <% error = @user.errors.full_messages_for(:name).second %>
+        <%= error %>
+      <% elsif @user.errors[:email].first.present? %>
+      <% error = @user.errors.full_messages_for(:email).first %>
+        <%= error %>
+      <% elsif @user.errors[:email].second.present? %>
+      <% error = @user.errors.full_messages_for(:email).second %>
+        <%= error %>
+      <% elsif @user.errors[:password].first.present? %>
+      <% error = @user.errors.full_messages_for(:password).first %>
+        <%= error %>
+      <% elsif @user.errors[:password_confirmation].first.present? %>
+      <% error = @user.errors.full_messages_for(:password_confirmation).first %>
+        <%= error %>
+      <% else @user.errors[:password_confirmation].second.present? %>
+      <% error = @user.errors.full_messages_for(:password_confirmation).second %>
+        <%= error %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+
+<%
+=begin %>
+ORIGINAL CODE BELOW:
+
+<% if @user.errors.any? %>
+  <div id="error_explanation">
     <div class="alert alert-danger">
       The form contains <%= pluralize(@user.errors.count, "error") %>.
     </div>
@@ -10,3 +44,7 @@
     </ul>
   </div>
 <% end %>
+%>
+
+<%
+=end %>
